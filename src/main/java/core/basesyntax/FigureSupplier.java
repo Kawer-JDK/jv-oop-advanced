@@ -4,41 +4,26 @@ import java.util.Random;
 
 public class FigureSupplier {
 
+    private static final int FIGURE_COUNT = 5;
+    private Random random = new Random();
+    private ColorSupplier colorSupplier = new ColorSupplier();
+    private String color = colorSupplier.getRandomColor();
+    private int number = random.nextInt(100) + 1;
+
     public Figure getRandomFigure() {
-        Random random = new Random();
-        int figureNumber = random.nextInt(5);
-        ColorSupplier colorSupplier = new ColorSupplier();
+        int figureNumber = random.nextInt(FIGURE_COUNT);
 
         switch (figureNumber) {
             case 0:
-                return new Square(
-                        colorSupplier.getRandomColor(),
-                        random.nextInt(100) + 1
-                );
+                return new Square(color, number);
             case 1:
-                return new Rectangle(
-                        colorSupplier.getRandomColor(),
-                        random.nextInt(100) + 1,
-                        random.nextInt(100) + 1
-                );
+                return new Rectangle(color, number, number);
             case 2:
-                return new RightTriangle(
-                        colorSupplier.getRandomColor(),
-                        random.nextInt(100) + 1,
-                        random.nextInt(100) + 1
-                );
+                return new RightTriangle(color, number, number);
             case 3:
-                return new Circle(
-                        colorSupplier.getRandomColor(),
-                        random.nextInt(100) + 1
-                );
+                return new Circle(color, number);
             case 4:
-                return new IsoscelesTrapezoid(
-                        colorSupplier.getRandomColor(),
-                        random.nextInt(100) + 1,
-                        random.nextInt(100) + 1,
-                        random.nextInt(100) + 1
-                );
+                return new IsoscelesTrapezoid(color, number, number, number);
             default:
                 return getDefaultFigure();
         }
